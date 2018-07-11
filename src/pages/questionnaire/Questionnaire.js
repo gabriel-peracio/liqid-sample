@@ -8,25 +8,39 @@ export default class Questionnaire extends React.Component {
     super(props);
 
     this.state = {
-      currentQuestion: 0
+      currentQuestion: 2
     };
 
     this.nextQuestion = this.nextQuestion.bind(this);
     this.previousQuestion = this.previousQuestion.bind(this);
+    this.getProgress = this.getProgress.bind(this);
+
   }
 
   previousQuestion() {
-    alert('back');
+    if (this.state.currentQuestion > 0) {
+      this.setState({
+        currentQuestion: this.state.currentQuestion - 1
+      });
+    }
   }
 
   nextQuestion(){
-    alert('next');
+    if (this.state.currentQuestion+1 < this.props.questionList.length){
+      this.setState({
+        currentQuestion: this.state.currentQuestion + 1
+      });
+    }
+  }
+
+  getProgress(){
+    return (this.state.currentQuestion) / this.props.questionList.length * 100;
   }
 
   render() {
     return (
       <div className="questionnaire">
-        <ProgressBar percentage="50"/>
+        <ProgressBar percentage={this.getProgress()}/>
         <Question question={this.props.questionList[this.state.currentQuestion]}/>
         <div className="footer">
           <Button onClick={this.previousQuestion}>back</Button>

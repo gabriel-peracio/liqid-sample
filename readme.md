@@ -1,8 +1,8 @@
-# Sample project
+# liqid-sample
 - Initial implementation: 4 hours
   - Project Setup ✅
   - Basic CSS styling ✅
-  - Support for all 3 input methods (text, radio, dropdown) including styling ❌
+  - Support for all 3 input methods (text, radio, dropdown) including styling ⏳
   - Navigating back & forward ❌
   - Unit tests ❌
   - End-screen Summary ❌
@@ -14,3 +14,6 @@
   - Keyboard navigation ❌
   - Contrast / colourblindness checks ❌
   - Semantic HTML + ARIA tags ❌
+
+## TODO
+- Progress bar never fills to 100%

@@ -4,5 +4,32 @@
     "input": {
       "inputType": "text"
     }
+  },
+  {
+    "heading": "What is your name?",
+    "input": {
+      "inputType": "text"
+    }
+  },
+  {
+    "heading": "What do you use for indentation?",
+    "input": {
+      "inputType": "dropdown",
+      "options": [
+        "spaces",
+        "tabs"
+      ]
+    }
+  },
+  {
+    "heading": "What is your favorite dessert?",
+    "input": {
+      "inputType": "radio",
+      "options": [
+        "cake",
+        "pie",
+        "other"
+      ]
+    }
   }
 ]
