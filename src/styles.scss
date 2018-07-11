@@ -1,0 +1,31 @@
+/*
+  A place to link all the scss files of the components
+  this is mostly done so codesandbox can recompile faster
+  in production, this will be automated by a bundler
+*/
+
+@import "./css/base.scss";
+
+/**************
+ * COMPONENTS *
+ **************/
+@import "./components/button/button.scss";
+@import "./components/dropdown/dropdown.scss";
+@import "./components/progressBar/progressBar.scss";
+@import "./components/question/question.scss";
+@import "./components/radioGroup/radioGroup.scss";
+@import "./components/textInput/textInput.scss";
+
+/*********
+ * PAGES *
+ *********/
+@import "./pages/questionnaire/questionnaire.scss";
+@import "./pages/summary/summary.scss";
+
+/**********
+ * EXTRAS *
+ **********/
+body {
+	font-family: "Roboto";
+  margin: 0px;
+}

@@ -1,0 +1,18 @@
+/*
+  This file implements the color pallete for the project
+  this is done to avoid having design bloat, such as hundreds of subtly
+  different shades of green, which leads to designs drifting from spec
+
+  all colors use the "$c-" prefix for the variable name,
+  inspired by Hungarian Notation
+*/
+
+/***********
+ * PALETTE *
+ ***********/
+$c-white: #FFF;
+$c-black: #000;
+
+/************
+ * SEMANTIC *
+ ************/

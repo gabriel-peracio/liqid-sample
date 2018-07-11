@@ -1,0 +1,11 @@
+/*
+  A common module that can be imported by all components/pages,
+  without importing a bunch of classes (that end up being repeated 
+  for each component). Think of this as a place to put your "utils"
+  scss files.
+
+  Avoid adding selectors that affect DOM nodes (i.e. ".foo" or "body")
+  since those end up being repeated every time they are imported.
+  (a bundler would solve this problem)
+*/
+@import "colors.scss";
