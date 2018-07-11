@@ -1,3 +1,22 @@
+$progress-radius: 4px;
+$progress-outline: 4px;
+$progress-height: 16px;
+$c-progress: tomato;
+$c-progress-bg: black;
+$c-progress-border: black;
+
 .progressBar {
-  
+  width: 100%;
+  height: $progress-height - $progress-outline*2;
+  background-color: $c-progress-bg;
+  border-radius: $progress-radius + $progress-outline;
+  border: $progress-outline solid $c-progress-border;
+
+  .progress {
+    height: 100%;
+    background-color: $c-progress;
+    border-radius: $progress-radius;
+    transition: width 1s;
+    min-width: $progress-radius*2; //show a dot when at 0%
+  }
 }

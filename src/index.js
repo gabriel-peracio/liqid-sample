@@ -3,6 +3,11 @@ import { render } from "react-dom";
 import Questionnaire from "./pages/questionnaire/Questionnaire";
 
 import "./styles.scss";
+
+// just loading some sample data
+const QUESTIONS = require("/questions.json");
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +15,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Questionnaire />
+      <Questionnaire questionList={QUESTIONS}/>
     )
   }
 }

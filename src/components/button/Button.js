@@ -1,9 +1,9 @@
 import React from "react";
 
-export default ({ children, onClick }) => {
+export default ({ children, disabled, onClick }) => {
   return (
-    <div className="button" onClick={onClick}>
+    <button className="button" onClick={onClick}>
       {children}
-    </div>
+    </button>
   );
 };

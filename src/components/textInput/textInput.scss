@@ -1,3 +1,7 @@
 .textInput {
-  
+  width: 100%;
+  textarea {
+    min-width: 100%;
+    max-width: 100%; //prevent resizing offscreen
+  }
 }
