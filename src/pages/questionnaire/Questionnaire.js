@@ -2,6 +2,7 @@ import React from "react";
 import {cloneDeep} from "lodash";
 import Button from "/src/components/button/Button";
 import Question from "/src/components/question/Question";
+import Summary from "/src/components/summary/Summary";
 import ProgressBar from "/src/components/progressBar/ProgressBar";
 
 export default class Questionnaire extends React.Component {
@@ -20,7 +21,7 @@ export default class Questionnaire extends React.Component {
 
     this.state = {
       questionList: questionList,
-      currentQuestion: 2
+      currentQuestion: 3
     };
 
     this.nextQuestion = this.nextQuestion.bind(this);
@@ -39,7 +40,7 @@ export default class Questionnaire extends React.Component {
   }
 
   nextQuestion(){
-    if (this.state.currentQuestion+1 < this.props.questionList.length){
+    if (this.state.currentQuestion+1 <= this.props.questionList.length){
       this.setState({
         currentQuestion: this.state.currentQuestion + 1
       });
@@ -61,13 +62,16 @@ export default class Questionnaire extends React.Component {
   }
 
   render() {
+    let { currentQuestion, questionList} = this.state;
     return (
       <div className="questionnaire">
         <ProgressBar percentage={this.getProgress()}/>
-        <Question question={this.state.questionList[this.state.currentQuestion]} responseHandler={this.responseHandler}/>
+        {(currentQuestion < questionList.length) ?
+        <Question question={questionList[currentQuestion]} responseHandler={this.responseHandler}/>
+          : <Summary questionList={questionList}/>}
         <div className="footer">
-          <Button onClick={this.previousQuestion}>back</Button>
-          <Button onClick={this.nextQuestion}>next</Button>
+          <Button onClick={this.previousQuestion} disabled={currentQuestion === 0}>back</Button>
+          <Button onClick={this.nextQuestion} disabled={currentQuestion >= questionList.length}>next</Button>
         </div>
       </div>
     );

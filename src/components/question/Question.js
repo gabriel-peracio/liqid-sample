@@ -19,7 +19,7 @@ export default ({ question, responseHandler }) => {
   return (
     <div className="question">
       <div className="heading">
-        Question: {question.heading}
+        {question.heading}
       </div>
       {input}
     </div>

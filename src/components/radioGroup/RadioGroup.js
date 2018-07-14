@@ -16,13 +16,16 @@ export default class RadioGroup extends React.Component {
         <form>
           {this.props.options.map((o,i) => {
             return (
-              <label key={i}>
+              <div className="radioOption">
                 <input type="radio"
+                  id={`option_${i}`}
                   value={o}
                   onChange={this.handleChange}
                   checked={this.props.selectedOption === o}/>
-                {o}
-              </label>
+                <label for={`option_${i}`} key={i} className="label">
+                  {o}
+                </label>
+              </div>
             )
           })}
         </form>

@@ -1,3 +1,40 @@
 .radioGroup {
-  
+  margin: 0px 32px;
+  position: relative;
+  .label {
+    text-align: left;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+
+    &:hover {
+      border-left: 2px solid lightblue;
+      margin-left: -2px;
+      background-color: rgba(lightblue, 0.25);
+    }
+
+    &::before {
+      width: 12px;
+      height: 12px;
+      content: '';
+      display: inline-block;
+      // background-color: lightblue;
+      border-radius: 50%;
+      border: 2px solid lightblue;
+      margin-right: 8px;
+    }
+  }
+  .radioOption:last-child {
+    margin-bottom: 0px;
+  }
+  input[type=radio] {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+  }
+
+  input[type=radio]:checked ~ label::before{
+    background-color: lightblue;
+  }
 }

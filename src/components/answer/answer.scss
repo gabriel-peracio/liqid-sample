@@ -1,0 +1,19 @@
+.answer {
+  align-self: flex-start;
+  border-left: 2px solid lightblue;
+  padding-left: 8px;
+  margin-bottom: 16px;
+
+  .heading {
+    margin-bottom: 8px;
+  }
+  .response {
+    border: 1px dashed lightgray;
+    padding: 8px;
+    .responseHeading {
+      font-size: 12px;
+      color: gray;
+      margin-bottom: 4px;
+    }
+  }
+}

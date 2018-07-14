@@ -1,4 +1,5 @@
 import React from "react";
+import Answer from "../answer/Answer";
 
 
 export default class Summary extends React.Component {
@@ -9,7 +10,9 @@ export default class Summary extends React.Component {
   render() {
     return (
       <div className="summary">
-        Summary
+        {this.props.questionList.map((q,i)=>{
+          return (<Answer key={i} heading={`Question ${i+1}: ${q.heading}`}>{q.response}</Answer>)
+        })}
       </div>
     );
   }
