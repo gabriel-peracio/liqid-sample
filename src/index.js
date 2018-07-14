@@ -1,6 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
+import { BrowserRouter } from 'react-router-dom';
 import Questionnaire from "./pages/questionnaire/Questionnaire";
+import Summary from "./pages/summary/Summary";
 
 import "./styles.scss";
 
@@ -15,9 +17,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <Questionnaire questionList={QUESTIONS}/>
+      <div>
+        <Questionnaire questionList={QUESTIONS} />
+      </div>
     )
   }
 }
 
-render(<App />, document.getElementById("app"));
+render((
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+), document.getElementById("app"));

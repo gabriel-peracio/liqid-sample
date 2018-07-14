@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
-export default ({ children, disabled, onClick }) => {
+export default ({ children, disabled, path, onClick }) => {
   return (
-    <button className="button" onClick={onClick} disabled={disabled}>
-      {children}
-    </button>
+    <div className="button" disabled={disabled} onClick={onClick}>
+      {!!path && <Link to={path}>
+          {children}
+      </Link>}
+    </div>
   );
 };

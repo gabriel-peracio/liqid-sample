@@ -1,8 +1,9 @@
 import React from "react";
+import { Route, Redirect } from 'react-router'
 import {cloneDeep} from "lodash";
 import Button from "/src/components/button/Button";
 import Question from "/src/components/question/Question";
-import Summary from "/src/components/summary/Summary";
+import Summary from "../summary/Summary";
 import ProgressBar from "/src/components/progressBar/ProgressBar";
 
 export default class Questionnaire extends React.Component {
@@ -21,9 +22,11 @@ export default class Questionnaire extends React.Component {
 
     this.state = {
       questionList: questionList,
-      currentQuestion: 3
+      currentQuestion: 0
     };
 
+    this.getNextQuestion = this.getNextQuestion.bind(this);
+    this.getPreviousQuestion = this.getPreviousQuestion.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.previousQuestion = this.previousQuestion.bind(this);
     this.getProgress = this.getProgress.bind(this);
@@ -31,6 +34,11 @@ export default class Questionnaire extends React.Component {
 
   }
 
+  nextQuestion() {
+    this.setState({
+      currentQuestion: this.state.currentQuestion + 1
+    });
+  }
   previousQuestion() {
     if (this.state.currentQuestion > 0) {
       this.setState({
@@ -39,16 +47,25 @@ export default class Questionnaire extends React.Component {
     }
   }
 
-  nextQuestion(){
-    if (this.state.currentQuestion+1 <= this.props.questionList.length){
-      this.setState({
-        currentQuestion: this.state.currentQuestion + 1
-      });
+  getPreviousQuestion() {
+    if (this.state.currentQuestion > 0) {
+      return `/question/${this.state.currentQuestion - 1}`;
     }
   }
 
-  getProgress(){
-    return (this.state.currentQuestion) / this.props.questionList.length * 100;
+  getNextQuestion(){
+    const { currentQuestion } = this.state;
+    const { questionList} = this.props;
+    if (currentQuestion+1 < questionList.length){
+      return `/question/${currentQuestion + 1}`;
+    } else if (currentQuestion + 1 === questionList.length){
+      return "/summary";
+    }
+  }
+
+  getProgress() {
+    const { questionList } = this.props;
+    return this.state.currentQuestion / questionList.length * 100;
   }
 
   responseHandler(response){
@@ -62,16 +79,23 @@ export default class Questionnaire extends React.Component {
   }
 
   render() {
-    let { currentQuestion, questionList} = this.state;
+    const { questionList} = this.state;
+    const { currentQuestion } = this.props;
     return (
       <div className="questionnaire">
+        <Route exact path="/" component={() => (
+          <Redirect to="/question/0" />
+        )} />
         <ProgressBar percentage={this.getProgress()}/>
-        {(currentQuestion < questionList.length) ?
-        <Question question={questionList[currentQuestion]} responseHandler={this.responseHandler}/>
-          : <Summary questionList={questionList}/>}
+          <Route path="/question/:questionNumber" render={(r) => (
+            <Question question={questionList[r.match.params.questionNumber]} responseHandler={this.responseHandler} />
+          )} />
+          <Route exact path="/summary" render={(r) => (
+            <Summary questionList={questionList} />
+          )} />
         <div className="footer">
-          <Button onClick={this.previousQuestion} disabled={currentQuestion === 0}>back</Button>
-          <Button onClick={this.nextQuestion} disabled={currentQuestion >= questionList.length}>next</Button>
+          <Button onClick={this.previousQuestion} path={this.getPreviousQuestion()} disabled={currentQuestion === 0}>back</Button>
+          <Button onClick={this.nextQuestion} path={this.getNextQuestion()} disabled={currentQuestion >= questionList.length}>next</Button>
         </div>
       </div>
     );

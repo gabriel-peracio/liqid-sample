@@ -1,5 +1,5 @@
 import React from "react";
-import Answer from "../answer/Answer";
+import Answer from "/src/components/answer/Answer";
 
 
 export default class Summary extends React.Component {
